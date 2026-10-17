@@ -10,7 +10,7 @@ public class CalculatorTest {
     // 1. 正常加法测试
     @Test
     void addNormalTest() {
-        assertEquals(8.0, cal.add(5, 3));
+        assertEquals(999, cal.add(5, 3));
     }
 
     // 2. 正常减法测试
