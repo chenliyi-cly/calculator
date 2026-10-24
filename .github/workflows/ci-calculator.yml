@@ -32,3 +32,5 @@ jobs:
 
       - name: Run tests
         run: mvn test
+      - name: Build Docker image
+        run: docker build -t calculator:lab6 .
