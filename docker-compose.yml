@@ -1,0 +1,28 @@
+# Docker Compose: multi-container calculator application
+# backend = Java HTTP calculation service, web = static nginx frontend
+
+services:
+  # Backend calculation service
+  backend:
+    # Build from the Dockerfile inside the backend folder
+    build: ./backend
+    # Map host port 8000 to container port 8000
+    ports:
+      - "8000:8000"
+    # Restart automatically if the service exits with a failure
+    restart: on-failure
+    # Optional environment variable injected into the backend container
+    environment:
+      - LOG_LEVEL=info
+
+  # Frontend static web service
+  web:
+    # Build from the Dockerfile inside the web folder
+    build: ./web
+    # Map host port 8080 to container port 80
+    ports:
+      - "8080:80"
+    # Start backend before the web container
+    depends_on:
+      - backend
+    restart: on-failure
